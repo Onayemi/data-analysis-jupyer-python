@@ -1,0 +1,12 @@
+git clone http
+cd data-analysis-jupyer-python
+
+git fetch origin
+git checkout staging
+git pull origin staging
+
+git checkout -b feature/dev1-analysis1
+
+git add .
+git commit -m "Pust corrcetion"
+git push -u origin feature/dev1-analysis1
