@@ -11,4 +11,4 @@ git add .
 git commit -m "Pust corrcetion"
 git push -u origin feature/dev1-analysis1
 
-wait for other
+- wait for other
