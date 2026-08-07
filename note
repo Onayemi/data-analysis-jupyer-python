@@ -12,56 +12,62 @@ git commit -m "Pust corrcetion"
 git push -u origin feature/dev1-analysis1
 
 # Info
+
 1. **Navigate to Repository Rulesets:** Requires Repository Admin permissions.
 1. Go to your GitHub repository.
-2. Click on **Settings** in the top navigation bar.
-3. In the left sidebar, under the **Code and automation** section, select **Rules** > **Rulesets**.
-4. Click **New ruleset**, then select **New branch ruleset**.
+1. Click on **Settings** in the top navigation bar.
+1. In the left sidebar, under the **Code and automation** section, select **Rules** > **Rulesets**.
+1. Click **New ruleset**, then select **New branch ruleset**.
 
 ### What No: 1 Does. Direct Pushes are Blocked (`Restrict pushes`)
--------------------------------------------------------------------
-* **What it does:** Completely disables the ability to run commands like `git push origin master` or `git push origin staging` from a local terminal.
-* **Why:** Forces all code changes to travel through a Pull Request (PR) workflow instead of landing straight on the branch.
 
+---
+
+- **What it does:** Completely disables the ability to run commands like `git push origin master` or `git push origin staging` from a local terminal.
+- **Why:** Forces all code changes to travel through a Pull Request (PR) workflow instead of landing straight on the branch.
 
 2. **Configure General Ruleset Details:**
 1. **Ruleset name**: Enter a descriptive name (e.g., `Protect Production and Staging`).
-2. **Enforcement status**: Set to **Active**.
-3. **Bypass list**: Leave empty if *everyone* (including admins) must go through PR approvals, or click **Add bypass** to select specific Roles/Users (e.g., *Repository Admin*) who are allowed to bypass the rule.
+1. **Enforcement status**: Set to **Active**.
+1. **Bypass list**: Leave empty if _everyone_ (including admins) must go through PR approvals, or click **Add bypass** to select specific Roles/Users (e.g., _Repository Admin_) who are allowed to bypass the rule.
 
-What No 2 Does. Pull Request Requirement (`Require a pull request before merging`)
---------------------------------------------------------------------
-* **What it does:** Dictates that code can only enter `master` or `staging` by opening a PR from a feature branch (e.g., `feature/login-page` $\rightarrow$ `staging`).
-* **Why:** Ensures all changes are isolated, visible, and audited before being merged.
+## What No 2 Does. Pull Request Requirement (`Require a pull request before merging`)
+
+- **What it does:** Dictates that code can only enter `master` or `staging` by opening a PR from a feature branch (e.g., `feature/login-page` $\rightarrow$ `staging`).
+- **Why:** Ensures all changes are isolated, visible, and audited before being merged.
 
 3. **Define Target Branches:**
 1. In the **Target branches** section, click **Add target** > **Include by pattern**.
-2. Add `master` to the target patterns.
-3. Click **Add target** > **Include by pattern** again and add `staging`.
+1. Add `master` to the target patterns.
+1. Click **Add target** > **Include by pattern** again and add `staging`.
 
-What No 3 Does. Required Approvals (`Required approvals = 1+`)
----------------------------------------------------------------
-* **What it does:** Prevents the PR's **Merge** button from unlocking until at least one qualified reviewer approves the PR.
-* **Why:** Guarantees peer or admin review.
+## What No 3 Does. Required Approvals (`Required approvals = 1+`)
+
+- **What it does:** Prevents the PR's **Merge** button from unlocking until at least one qualified reviewer approves the PR.
+- **Why:** Guarantees peer or admin review.
 
 4. **Restrict Direct Pushes & Enable PR Approvals:**
-Under **Rules**, configure the following settings:
+   Under **Rules**, configure the following settings:
 
-* Check **Restrict pushes** (this completely blocks direct `git push` to `master` and `staging`).
-* Check **Require a pull request before merging**:
-* Set **Required approvals** to `1` (or more).
-* Check **Require review from Code Owners** (if using a `CODEOWNERS` file designated for admins).
-* Optional: Enable **Dismiss stale pull request approvals when new commits are pushed** to prevent unreviewed code changes.
+- Check **Restrict pushes** (this completely blocks direct `git push` to `master` and `staging`).
+- Check **Require a pull request before merging**:
+- Set **Required approvals** to `1` (or more).
+- Check **Require review from Code Owners** (if using a `CODEOWNERS` file designated for admins).
+- Optional: Enable **Dismiss stale pull request approvals when new commits are pushed** to prevent unreviewed code changes.
 
-What No 4 Does. Admin Enforcement via Code Owners (`Require review from Code Owners`)
----------------------------------------------------------------------------
-* **What it does:** When paired with a `.github/CODEOWNERS` file listing your admin team, GitHub automatically assigns the admins as required reviewers on every PR to `master` and `staging`.
-* **Why:** Standard team members can review and comment, but **only an designated Admin's approval** will unlock the merge button.
+## What No 4 Does. Admin Enforcement via Code Owners (`Require review from Code Owners`)
+
+- **What it does:** When paired with a `.github/CODEOWNERS` file listing your admin team, GitHub automatically assigns the admins as required reviewers on every PR to `master` and `staging`.
+- **Why:** Standard team members can review and comment, but **only an designated Admin's approval** will unlock the merge button.
 
 5. **Save and Apply the Ruleset:**
 1. Scroll to the bottom and click **Create** (or **Save changes**).
-2. Verify the ruleset status displays as **Active**.
+1. Verify the ruleset status displays as **Active**.
 
-What No 5 Does
---------------
+## What No 5 Does
+
 **What it does:** Allows you to grant specific high-privilege roles or individuals an exception to bypass the PR process (useful during critical outages or hotfixes). Anyone not on this list—even admins—must follow the approval rules.
+
+# Final Steps
+
+Approve by the admin
